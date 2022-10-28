@@ -12,7 +12,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/ScreenPage')
+    component: () => import('@/views/StockPage')
   },
   {
     path: '/sellerpage',
@@ -38,6 +38,11 @@ const routes = [
     path: '/screenpage',
     name: 'ScreenPage',
     component: () => import('@/views/ScreenPage')
+  },
+  {
+    path: '/stockpage',
+    name: 'StockPage',
+    component: () => import('@/views/StockPage')
   }
 ]
 

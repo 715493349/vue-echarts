@@ -1,19 +1,19 @@
 <!--
  * @Author: Popcorn
- * @Date: 2022-10-28 16:24:40
+ * @Date: 2022-10-28 17:53:10
  * @Description: 
 -->
 <template>
   <div class="com-page">
-    <Screen />
+    <Stock />
   </div>
 </template>
 
 <script>
 export default {
-	name: 'ScreenPage',
+	name: 'StockPage',
 	components: {
-		Screen: () => import('@/components/Screen')
+		Stock: () => import('@/components/Stock')
 	}
 };
 </script>

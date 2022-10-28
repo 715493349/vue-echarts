@@ -102,7 +102,7 @@ export default {
 		// 获取数据
 		async getData() {
 			const {data: res} = await this.$axios.get('hot');
-			console.log(res);
+			// console.log(res);
 			this.allData = res;
 			this.updataChart();
 		},
