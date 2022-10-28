@@ -12,7 +12,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/SellerPage')
+    component: () => import('@/views/MapPage')
   },
   {
     path: '/sellerpage',
@@ -20,9 +20,14 @@ const routes = [
     component: () => import('@/views/SellerPage')
   },
   {
-    path: '/trendPage',
-    name: 'Trend',
+    path: '/trendpage',
+    name: 'TrendPage',
     component: () => import('@/views/TrendPage')
+  },
+  {
+    path: '/mappage',
+    name: 'MapPage',
+    component: () => import('@/views/MapPage')
   }
 ]
 
