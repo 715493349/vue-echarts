@@ -57,14 +57,26 @@ export default {
 			};
 		}
 	},
+	created() {
+		// 组件创建完成后进行回调函数的注册
+		this.$socket.registerCallBack('trendData', this.getData);
+	},
 	mounted() {
 		this.initChart();
-		this.getData();
+		// this.getData();
+		// 发送请求,获取数据
+		this.$socket.send({
+			action: 'getData',
+			socketType: 'trendData',
+			chartName: 'trend',
+			value: ''
+		});
 		window.addEventListener('resize', this.screenAdapter);
 		this.screenAdapter(); // 页面加载完成初始化适配
 	},
 	destroyed() {
 		window.removeEventListener('resize', this.screenAdapter);
+		this.$socket.unRegisterCallBack('trendData'); // 组件销毁时取消注册
 	},
 	methods: {
 		// 初始化图表
@@ -105,8 +117,8 @@ export default {
 			this.chartInstane.setOption(initOption);
 		},
 		// 获取数据
-		async getData() {
-			const {data: res} = await this.$axios.get('trend');
+		async getData(res) {  //res是后台返回的数据,
+			// const {data: res} = await this.$axios.get('trend');
 			this.allData = res;
 			this.updateChart();
 		},

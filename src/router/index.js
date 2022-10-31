@@ -12,7 +12,7 @@ Vue.use(VueRouter)
 const routes = [
   {
     path: '/',
-    component: () => import('@/views/StockPage')
+    component: () => import('@/views/HomePage')
   },
   {
     path: '/sellerpage',

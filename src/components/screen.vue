@@ -147,7 +147,7 @@ export default {
 				},
 				series: [
 					{
-						radius: this.titleFontSize * 7,
+						radius: this.titleFontSize * 5,
 						center: ['50%', '60%']
 					}
 				]
@@ -196,8 +196,12 @@ export default {
 }
 .cat-name {
 	position: absolute;
-	top: 8%;
+	top: 10%;
 	right: 10%;
-	color: #fff;
+	margin: 0 auto;
+	background: linear-gradient(90deg, #35a9f1 15%, #2ebf91, #c95b6b 76%);
+	background-clip: text;
+	-webkit-background-clip: text;
+	color: transparent;
 }
 </style>

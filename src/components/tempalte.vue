@@ -24,6 +24,7 @@ export default {
 		window.addEventListener('resize', this.screenAdapter);
 		this.screenAdapter(); // 页面加载完成初始化适配
 	},
+	//分辨率配置，监听浏览器窗口事件
 	destroyed() {
 		window.removeEventListener('resize', this.screenAdapter);
 	},
@@ -38,7 +39,14 @@ export default {
 		async getData() {
 			const {data: res} = await this.$axios.get('');
 			this.allData = res;
+			this.updataChart();
 		},
+		// 更新图表
+		updataChart() {
+			const option = {};
+			this.chartInstane.setOption(option);
+		},
+		// 屏幕适配
 		screenAdapter() {
 			const adapterOtion = {};
 			this.chartInstane.setOption(adapterOtion);

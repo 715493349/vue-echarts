@@ -1,9 +1,14 @@
+/*
+ * @Author: Popcorn
+ * @Date: 2022-10-28 14:23:09
+ * @Description: 
+ */
 export default class SocketService {
   /**
-   * 单例
+   * 单例模式
    */
-  static instance = null
-  static get Instance() {
+  static instance = null  // 用来保存回调函数的容器, key是socketType, value是回调函数
+  static get Instance() {  //  定义一个静态方法, 用来获取单例对象, 这样就可以保证整个程序中只有一个单例对象
     if (!this.instance) {
       this.instance = new SocketService()
     }
@@ -13,7 +18,7 @@ export default class SocketService {
   // 和服务端连接的socket对象
   ws = null
 
-  // 存储回调函数
+  // 存储回调函数，key是socketType, value是回调函数
   callBackMapping = {}
 
   // 标识是否连接成功
@@ -28,10 +33,10 @@ export default class SocketService {
   //  定义连接服务器的方法
   connect() {
     // 连接服务器
-    if (!window.WebSocket) {
+    if (!window.WebSocket) {  // 判断浏览器是否支持WebSocket
       return console.log('您的浏览器不支持WebSocket')
     }
-    this.ws = new WebSocket('ws://localhost:9998')
+    this.ws = new WebSocket('ws://localhost:9998')  // 创建WebSocket对象, 并指定连接的服务器地址, 服务器地址就是服务器的ip地址和端口号
 
     // 连接成功的事件
     this.ws.onopen = () => {
@@ -73,17 +78,18 @@ export default class SocketService {
   }
 
   // 回调函数的注册
-  registerCallBack (socketType, callBack) {
-    this.callBackMapping[socketType] = callBack
+  registerCallBack(socketType, callBack) {
+    // console.log('registerCallBack', socketType, callBack);
+    this.callBackMapping[socketType] = callBack  // 将回调函数保存起来
   }
 
   // 取消某一个回调函数
-  unRegisterCallBack (socketType) {
+  unRegisterCallBack(socketType) {
     this.callBackMapping[socketType] = null
   }
 
   // 发送数据的方法
-  send (data) {
+  send(data) {
     // 判断此时此刻有没有连接成功
     if (this.connected) {
       this.sendRetryCount = 0
